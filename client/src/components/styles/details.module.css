@@ -1,0 +1,85 @@
+.containerLoading{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.containerAll{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../img/fondo-landing.webp");
+}
+
+.containerDetails{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: white;
+}
+
+.containerInfo{
+    border: 2px solid black;
+    width: 800px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
+
+.divImg{
+    width: 90%;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+}
+
+.title{
+    border-bottom: 2px solid black;
+}
+
+.divDesc{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    text-align: left;
+    padding: 5px;
+}
+
+.containerBtn{
+    border-top: 2px solid black;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+.btn{
+    width: 100px;
+    height: 26px;
+    border: 2px solid black;
+    background-color: white;
+    font-family: sans-serif;
+    color: black;
+}
+
+.btn:hover{
+    cursor: pointer;
+    transition: 0.5s;
+    background-color: black;
+    color:  white;
+}
