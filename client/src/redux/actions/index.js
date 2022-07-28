@@ -40,15 +40,19 @@ export const gameDetail = (id)=>{
       };
 }
 
-export const getGameByName =(name)=>{
-    return async function(dispatch){
-        try {
-            return fetch(`http://localhost:3001/videogames?name=${name}`)
-            .then(response => response.json())
-          .then(data=>dispatch({type: GET_GAME_BY_NAME, payload: data}))   
-        } catch (error) {
-            console.log(error)
-        }
+export const getGameByName =(payload/*name*/)=>{
+    // return async function(dispatch){
+    //     try {
+    //         return fetch(`http://localhost:3001/videogames?name=${name}`)
+    //         .then(response => response.json())
+    //       .then(data=>dispatch({type: GET_GAME_BY_NAME, payload: data}))   
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+    return{
+        type: GET_GAME_BY_NAME,
+        payload:payload/*name*/
     }
 }
 

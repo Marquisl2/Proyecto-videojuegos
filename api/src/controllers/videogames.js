@@ -70,6 +70,7 @@ const getApiGames = async () => {
     getGameById: async(id)=>{
       let juegos = await totalInfoGames()
 
+
       let idd = Number(id) ? Number(id) : id
 
       const x = juegos.find(i=> i.id === idd)

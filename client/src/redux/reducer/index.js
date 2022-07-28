@@ -27,7 +27,7 @@ const initialState = {
             case GAME_DETAIL:
                 return{
                     ...state,
-                    gameDetail:{...action.payload}
+                    gameDetail:action.payload
                 }
             case GET_GENRES:
                 return{
@@ -35,14 +35,14 @@ const initialState = {
                     genres: action.payload
                 }
             case ORDER_ALF:
-                const a = state.allGames
+
                 const filterAlf = action.payload === "orderAaZ" 
-                ? a.sort((a, b) => {
+                ? state.games.sort((a, b) => {
                     if (a.name > b.name) return 1
                     if (a.name < b.name) return -1
                     return 0
                   })
-                : a.sort((a, b) => {
+                : state.games.sort((a, b) => {
                     if (a.name > b.name) return -1
                     if (a.name < b.name) return 1
                     return 0

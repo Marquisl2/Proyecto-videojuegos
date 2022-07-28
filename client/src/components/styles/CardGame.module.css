@@ -78,5 +78,6 @@
 }
 
 .p{
-    padding: 1px;
+    overflow: hidden;
+    padding: 2px;
 }

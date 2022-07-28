@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { gameDetail } from '../redux/actions'
@@ -9,24 +9,18 @@ import style from "./styles/details.module.css"
 import loading from ".././img/loading-gif.gif"
 
 export default function DetailsGame(props) {
-
   const dispatch = useDispatch()
-  
   useEffect(()=>{
-    dispatch(gameDetail(props.match.params.id))
+     dispatch(gameDetail(props.match.params.id))
   },[props.match.params.id,dispatch])
 
- 
-
-  
-  
   let gameDetails = useSelector(state=>state.gameDetail)
 
 
-  
+
   return (
     <div className={style.containerAll}>
-    {Object.keys(gameDetails).length?(
+    {Object.keys(gameDetails).length ?(
     <div className={style.containerDetails}>
       
         <div className={style.containerInfo}>

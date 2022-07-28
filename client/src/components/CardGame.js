@@ -1,8 +1,18 @@
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import foto from "../img/fotoDefault.jpg"
+import { getGameByName } from '../redux/actions';
 import style from "./styles/CardGame.module.css"
 export default function CardGame({name,img,generos,id}) {
+const dispatch = useDispatch()
+  const gamesB = useSelector(state=>state.allGames)
+
+  const handleOnClick = (e) =>{
+    e.preventDefault()
+    dispatch(getGameByName(gamesB))
+  }
+
   return (
 
         <div className={style.cardContainer}>
@@ -26,11 +36,18 @@ export default function CardGame({name,img,generos,id}) {
 
             <p> <strong>Genres: </strong>{generos && generos.join(", ")}</p>
             </div>
-            <div className={style.containerP}>
-            <Link to={`/game/${id}`}>
-            <button className={style.btn}>Details</button>
-            </Link>
-            </div>
+            {id !== "z" ?(
+              <div className={style.containerP}>
+              <Link to={`/game/${id}`}>
+              <button className={style.btn}>Details</button>
+              </Link>
+              </div>
+            ):(
+              <div className={style.containerP}>
+              <button onClick={e=>handleOnClick(e)} className={style.btn}>Go home!</button>
+              </div> 
+            )}
+            
         </div>
 
   )

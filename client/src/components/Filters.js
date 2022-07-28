@@ -1,5 +1,5 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { filterFrom,  orderGenre } from '../redux/actions'
 import style from "./styles/filters.module.css"
 
@@ -7,8 +7,23 @@ import style from "./styles/filters.module.css"
 
 export default function Filters({generos,handlerOrderAlf,handlerOrderRating,set}) {
     const dispatch = useDispatch()
+
+    const juegosB = useSelector(state=> state.allGames)
+
+    const validate = (e)=>{
+        let result = juegosB.filter(i=>i.genres.includes(e.target.value))
+
+        if(!result.length){
+            return 0
+        }
+        return 1
+    }
+
+
     function handlerFilterGenres(e){
         e.preventDefault()
+        let result = validate(e)
+        if(!result && e.target.value !== "All") return
         dispatch(orderGenre(e.target.value))
         set(1)
     }
@@ -18,6 +33,8 @@ export default function Filters({generos,handlerOrderAlf,handlerOrderRating,set}
         dispatch(filterFrom(e.target.value))
         set(1)
     }
+
+
     
         
     
