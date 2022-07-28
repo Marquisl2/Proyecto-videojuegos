@@ -7,12 +7,10 @@ import style from "./styles/filters.module.css"
 
 export default function Filters({generos,handlerOrderAlf,handlerOrderRating,set}) {
     const dispatch = useDispatch()
-
-    const juegosB = useSelector(state=> state.allGames)
+    const juegosB = useSelector(state=> state.gamesBackup)
 
     const validate = (e)=>{
         let result = juegosB.filter(i=>i.genres.includes(e.target.value))
-
         if(!result.length){
             return 0
         }
@@ -30,6 +28,8 @@ export default function Filters({generos,handlerOrderAlf,handlerOrderRating,set}
 
     function handlerFilterFrom(e){
         e.preventDefault()
+        let result =  juegosB.filter(i=> i.createdAtDb)
+        if(!result.length)return
         dispatch(filterFrom(e.target.value))
         set(1)
     }

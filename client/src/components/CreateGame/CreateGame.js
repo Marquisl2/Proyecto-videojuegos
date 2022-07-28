@@ -5,45 +5,48 @@ import { postGames } from '../../redux/actions'
 import style from "../styles/creategame.module.css"
 
 
-const validate = (input)=>{
-  let errors = {}
-
-  if(!input.name.trim() || /[$%&|<>#]/.test(input.name)){
-    errors.name = "Name is required or invalid"
-  }
-
-  if(!input.description){
-    errors.description = "Description is required"
-  }
-
-  if(!input.platforms.length){
-    errors.platforms = "At least one platform is required"
-  }
-
-  if(!input.img){
-    errors.img = "Image is required"
-  }
-
-  if(!input.releaseDate){
-    errors.releaseDate = "Release date is required"
-  }
-
-  if(!input.genres.length){
-    errors.genres = "At least one gender is required"
-  }
-
-  if(!input.rating){
-    errors.rating = "The rating cannot be 0"
-  }
-
-  return errors
-}
-
 
 
 export default function CreateGame() {
+  const validate = (input)=>{
+    let errors = {}
+    let result = gamesB.filter(i=> i.name.toLowerCase() === input.name.trim().toLowerCase())
+    if(!input.name.trim() || /[$%&|<>#]/.test(input.name) || result.length){
+      errors.name = "Name is required or invalid"
+    }
+  
+    if(!input.description.trim() || input.description.trim().length < 25){
+      errors.description = "The description is required and must contain at least 25 characters"
+    }
+  
+    if(!input.platforms.length){
+      errors.platforms = "At least one platform is required"
+    }
+  
+    if(!input.img){
+      errors.img = "Image is required"
+    }
+  
+    if(!input.releaseDate){
+      errors.releaseDate = "Release date is required"
+    }
+  
+    if(!input.genres.length){
+      errors.genres = "At least one gender is required"
+    }
+  
+    if(!input.rating){
+      errors.rating = "The rating cannot be 0"
+    }
+  
+    return errors
+  }
+
+
+
   const dispatch = useDispatch()
   const generos = useSelector(state=> state.genres)
+  const gamesB = useSelector(state => state.gamesBackup)
 
   const history = useHistory()
 

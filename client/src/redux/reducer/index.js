@@ -12,7 +12,8 @@ const initialState = {
     games: [],
     gameDetail: {},
     genres: [],
-    allGames: []
+    allGames: [],
+    gamesBackup:[]
   };
   
   const rootReducer = (state = initialState, action) => {
@@ -23,6 +24,7 @@ const initialState = {
                     ...state,
                     games:action.payload,
                     allGames: action.payload,
+                    gamesBackup: action.payload
                 }
             case GAME_DETAIL:
                 return{
@@ -38,18 +40,18 @@ const initialState = {
 
                 const filterAlf = action.payload === "orderAaZ" 
                 ? state.games.sort((a, b) => {
-                    if (a.name > b.name) return 1
-                    if (a.name < b.name) return -1
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) return 1
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1
                     return 0
                   })
                 : state.games.sort((a, b) => {
-                    if (a.name > b.name) return -1
-                    if (a.name < b.name) return 1
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) return -1
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) return 1
                     return 0
                   })
                 return{
                     ...state,
-                    games: action.payload === "All" ? state.allGames : filterAlf
+                    games: action.payload === "All" ? state.games : filterAlf
                 }
 
             case ORDER_RATING:
@@ -59,17 +61,19 @@ const initialState = {
 
                 return{
                     ...state,
-                    games: action.payload === "All"? state.allGames:  rFiltered
+                    games: action.payload === "All"? state.games:  rFiltered,
+                    allGames: action.payload === "All"? state.games:  rFiltered
 
                 }
 
             case FILTER_FROM:
-                const allGamesFa = state.allGames
-                const fromFilter = action.payload === "gamesDb"? allGamesFa.filter(i=> i.createdAtDb) : allGamesFa.filter(i=> !i.createdAtDb)
+                const allGamesFa = state.gamesBackup
+                let resultDb = allGamesFa.filter(i=> i.createdAtDb)
+                let resultApi = allGamesFa.filter(i=> !i.createdAtDb)
+                const fromFilter = action.payload === "gamesDb"? resultDb : resultApi
                 return{
                     ...state,
-                    games: action.payload === "All" ? state.allGames : fromFilter
-
+                    games: action.payload === "All" ? state.gamesBackup : fromFilter
                 }
 
             
@@ -86,8 +90,8 @@ const initialState = {
                     games: [...state.games, action.payload]
                 }
             case ORDER_GENRE:
-                const allGamesF = state.allGames
-                 const filtered = action.payload === "All" ? allGamesF :allGamesF.filter(i=>i.genres.includes(action.payload) )
+                const allGamesF = state.gamesBackup
+                 const filtered = action.payload === "All" ? state.gamesBackup :allGamesF.filter(i=>i.genres.includes(action.payload) )
                 return{
                     ...state,
                     games: filtered

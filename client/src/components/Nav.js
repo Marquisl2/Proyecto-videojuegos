@@ -9,7 +9,7 @@ export default function Nav({set}) {
   const dispatch = useDispatch()
 
   const [name, setName]= useState("")
-  const juegosBackup = useSelector(state=> state.allGames)
+  const juegosBackup = useSelector(state=> state.gamesBackup)
 
 
   const handlerChange =(e)=>{
