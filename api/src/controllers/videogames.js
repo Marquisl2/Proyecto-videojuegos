@@ -4,6 +4,7 @@ const axios = require("axios");
 const {Videogame,Genre} = require("../db")
 const { API_KEY } = process.env;
 
+let cache = []
 const getApiGames = async () => {
     let juegosApi = [];
     let count = 1;
@@ -51,6 +52,7 @@ const getApiGames = async () => {
       const api = await getApiGames()
       const db = await getDbGames()
       const totalGames = [...api,...db]
+      cache = [...totalGames]
       return totalGames
   }
 
@@ -68,12 +70,11 @@ const getApiGames = async () => {
     },
 
     getGameById: async(id)=>{
-      let juegos = await totalInfoGames()
 
 
       let idd = Number(id) ? Number(id) : id
 
-      const x = juegos.find(i=> i.id === idd)
+      const x = cache.find(i=> i.id === idd)
 
       if(!x) return "El id es incorrecto"
        

@@ -11,12 +11,14 @@ import loading from ".././img/loading-gif.gif"
 export default function DetailsGame(props) {
   const dispatch = useDispatch()
   useEffect(()=>{
-     dispatch(gameDetail(props.match.params.id))
+    dispatch(gameDetail(props.match.params.id))
   },[props.match.params.id,dispatch])
 
   let gameDetails = useSelector(state=>state.gameDetail)
 
+ 
 
+  
 
   return (
     <div className={style.containerAll}>
@@ -72,7 +74,7 @@ export default function DetailsGame(props) {
                   <div className={style.containerBtn}>
 
                   <Link to="/home">
-                    <button  className={style.btn}>Back</button>
+                    <button className={style.btn}>Back</button>
                   </Link>
                   </div>
   
