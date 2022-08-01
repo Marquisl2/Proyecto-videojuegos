@@ -12,6 +12,7 @@ export default function Nav({set}) {
   const juegosBackup = useSelector(state=> state.gamesBackup)
 
 
+
   const handlerChange =(e)=>{
       e.preventDefault()
       setName(e.target.value)

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getGames, getGenres, orderAlf, orderRating, getGameByName } from '../redux/actions'
+import { getGames, getGenres, orderAlf, orderRating, getPlatforms } from '../redux/actions'
 import CardGames from './CardGames'
 import Filters from './Filters'
 import gif from "../img/loading-gif.gif"
@@ -16,6 +16,8 @@ export default function MainGames() {
     
     dispatch(getGames())
     
+    dispatch(getPlatforms())
+
     dispatch(getGenres())
     
   },[])

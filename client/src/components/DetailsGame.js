@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { gameDetail } from '../redux/actions'
+import { clearDetails, gameDetail } from '../redux/actions'
 import foto from "../img/fotoDefault.jpg"
 import style from "./styles/details.module.css"
 
@@ -12,6 +12,9 @@ export default function DetailsGame(props) {
   const dispatch = useDispatch()
   useEffect(()=>{
     dispatch(gameDetail(props.match.params.id))
+    return()=>{
+      dispatch(clearDetails())
+    }
   },[props.match.params.id,dispatch])
 
   let gameDetails = useSelector(state=>state.gameDetail)

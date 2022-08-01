@@ -63,7 +63,7 @@ export default function CreateGame() {
     genres:[]
   })
 
-  const plataformas = ["PC","PS2","PS3","PS4","PS5","XBOX 360", "XBOX ONE", "XBOX SERIES X"]
+  const plataformas = useSelector(state=> state.platforms)
 
 
   const handlerChange = (e)=>{

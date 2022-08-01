@@ -6,14 +6,17 @@ import {GET_GAMES,
     ORDER_ALF,
     ORDER_RATING,
     GET_GAME_BY_NAME,
-    ORDER_GENRE} from "../actions/index"
+    ORDER_GENRE,
+    GET_PLATFORMS,
+    CLEAR_DETAILS} from "../actions/index"
 
 const initialState = {
     games: [],
     gameDetail: {},
     genres: [],
     allGames: [],
-    gamesBackup:[]
+    gamesBackup:[],
+    platforms: []
   };
   
   const rootReducer = (state = initialState, action) => {
@@ -30,6 +33,11 @@ const initialState = {
                 return{
                     ...state,
                     gameDetail:action.payload
+                }
+            case GET_PLATFORMS:
+                return{
+                    ...state,
+                    platforms: action.payload
                 }
             case GET_GENRES:
                 return{
@@ -53,6 +61,7 @@ const initialState = {
                     ...state,
                     games: action.payload === "All" ? state.games : filterAlf
                 }
+            
 
             case ORDER_RATING:
                 const rFiltered = action.payload === "orderRatingP" 
@@ -96,6 +105,11 @@ const initialState = {
                     ...state,
                     games: filtered
                     
+                }
+            case CLEAR_DETAILS:
+                return{
+                    ...state,
+                    gameDetail: action.payload
                 }
 
             default:

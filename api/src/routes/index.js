@@ -16,6 +16,15 @@ router.get("/videogames", async (req, res, next) => {
   }
 });
 
+router.get("/platforms", async(req,res,next)=>{
+    try{
+        const result  = await model.getPlatforms()
+        res.send(result)
+    }catch(e){
+        next(e)
+    }
+})
+
 
 router.get("/videogames/:id", async(req,res,next)=>{
     const {id} = req.params

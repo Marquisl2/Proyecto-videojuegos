@@ -8,7 +8,16 @@ export const FILTER_FROM = "FILTER_FROM"
 export const ORDER_RATING = "ORDER_RATING"
 export const ORDER_GENRE = "ORDER_GENRE"
 export const GET_GAME_BY_NAME = "GET_GAME_BY_NAME"
+export const GET_PLATFORMS = "GET_PLATFORMS"
+export const CLEAR_DETAILS = "CLEAR_DETAILS"
 
+
+export const clearDetails = ()=>{
+    return{
+        type: CLEAR_DETAILS,
+        payload: {}
+    }
+}
 
 export const getGames = ()=>{
     return async function (dispatch) {
@@ -62,6 +71,16 @@ export const getGenres = ()=>{
         return fetch(`http://localhost:3001/genres`)
             .then(response => response.json())
           .then(data=>dispatch({type: GET_GENRES, payload: data}))
+        
+      };
+}
+
+export const getPlatforms = ()=>{
+    return async function (dispatch) {
+        
+        return fetch(`http://localhost:3001/platforms`)
+            .then(response => response.json())
+          .then(data=>dispatch({type: GET_PLATFORMS, payload: data}))
         
       };
 }

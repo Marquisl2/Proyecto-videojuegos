@@ -141,6 +141,15 @@ const getApiGames = async () => {
       
     },
 
+    getPlatforms: async()=>{
+      const result = await axios.get(`https://api.rawg.io/api/platforms?key=${API_KEY}`)
+      let platforms = result.data.results
+
+      platforms = platforms.map(i=>i.name)
+
+      return platforms
+    },
+
     getGenres: async()=>{
       // let juegos = await totalInfoGames()
       // let generos = juegos.map(i=>i.genres)
