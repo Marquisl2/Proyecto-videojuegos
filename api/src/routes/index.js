@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const model = require("../controllers/videogames");
-
+const {Videogame} = require("../db")
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -25,6 +25,15 @@ router.get("/platforms", async(req,res,next)=>{
     }
 })
 
+router.get("/getRating", async(req,res,next)=>{
+    try {
+        const result = await model.getRating()
+        res.send(result)
+    } catch (error) {
+        next(error)
+        
+    }
+})
 
 router.get("/videogames/:id", async(req,res,next)=>{
     const {id} = req.params
@@ -51,6 +60,20 @@ router.get("/genres", async(req,res,next)=>{
     try {
         const resultado = await model.getGenres()
         res.send(resultado)
+    } catch (error) {
+        next(error)
+    }
+})
+
+router.delete("/delete/:id",async(req,res,next)=>{
+    const {id} = req.params
+    try {
+        await Videogame.destroy({
+            where:{
+                id
+            }
+        })
+        res.send("juego eliminado")
     } catch (error) {
         next(error)
     }

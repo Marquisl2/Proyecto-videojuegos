@@ -66,6 +66,7 @@ export default function Nav({set}) {
   const handlerOnClick = (e)=>{
     e.preventDefault()
     dispatch(getGameByName(juegosBackup))
+    set(1)
   }
 
    

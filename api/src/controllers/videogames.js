@@ -185,5 +185,13 @@ const getApiGames = async () => {
       return allGenres
 
 
+    },
+
+    getRating: async()=>{
+      let juegos = await totalInfoGames()
+
+      juegos = juegos.map(i=>{ return{name:i.name,rating:i.rating}})
+      return juegos
+      
     }
   }
