@@ -52,7 +52,7 @@ export const gameDetail = (id)=>{
 export const getGameByName =(payload/*name*/)=>{
     // return async function(dispatch){
     //     try {
-    //         return fetch(`/videogames?name=${name}`)
+    //         return fetch(`http://localhost:3001/videogames?name=${name}`)
     //         .then(response => response.json())
     //       .then(data=>dispatch({type: GET_GAME_BY_NAME, payload: data}))   
     //     } catch (error) {
